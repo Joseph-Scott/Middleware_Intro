@@ -6,7 +6,7 @@ const morgan = require('morgan');
 app.use(morgan('common'))
 app.use((req, res, next) => {
   req.method
-})
+});
 
 
 // app.use((req, res, next) => {
