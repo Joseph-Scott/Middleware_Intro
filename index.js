@@ -3,9 +3,12 @@ const app = express();
 const morgan = require('morgan');
 
 
-app.use(morgan('common'))
+app.use(morgan('tiny'));
+
 app.use((req, res, next) => {
-  req.method
+  req.requestTime = Date.now();
+  console.log(req.method, req.path);
+  next();
 });
 
 
@@ -25,10 +28,12 @@ app.use((req, res, next) => {
 
 
 app.get('/', (req, res) => {
+  console.log(`REQUEST DATE: ${req.requestTime}`)
   res.send('HOME PAGE!')
 });
 
 app.get('/DOGS', (req, res) => {
+  console.log(`REQUEST DATE: ${req.requestTime}`)
   res.send('WOOF WOOF!')
 });
 
