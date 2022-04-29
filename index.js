@@ -11,6 +11,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/dogs', (req, res, next) => {
+  console.log("I LOVE DOGS!!");
+  next();
+});
+
 
 // app.use((req, res, next) => {
 //   console.log("THIS IS MY FIRST MIDDLEWARE!")
@@ -32,9 +37,13 @@ app.get('/', (req, res) => {
   res.send('HOME PAGE!')
 });
 
-app.get('/DOGS', (req, res) => {
+app.get('/dogs', (req, res) => {
   console.log(`REQUEST DATE: ${req.requestTime}`)
   res.send('WOOF WOOF!')
+});
+
+app.use((req, res) => {
+  res.status(404).send('NOT FOUND!');
 });
 
 app.listen(3000, () => {
